@@ -57,6 +57,11 @@ const Resume = () => {
         </div>
         <ol className='text-sm'>
           <TimelineItem
+            title='University of the People —  Pasadena, California'
+            date='2024 — Current'
+            description='Bachelor of Science in Computer Science'
+          />
+          <TimelineItem
             title='University of California —  Berkeley, California'
             date='2023 — 2024'
             description='Full Stack Development Certification'
