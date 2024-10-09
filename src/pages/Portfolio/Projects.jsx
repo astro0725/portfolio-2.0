@@ -40,7 +40,7 @@ const Projects = () => {
 
       // categorize repos into featured, collaborations, and practice
       let featuredRepos = [],
-        collaborationsRepos = [], // changed groupRepos to collaborationsRepos
+        collaborationsRepos = [],
         practiceRepos = [];
 
       reposWithImages.forEach((repo) => {
