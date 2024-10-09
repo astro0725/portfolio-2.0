@@ -127,7 +127,7 @@ const Projects = () => {
       </header>
 
       <ul className="flex justify-center items-center gap-6 pl-1 mb-5 text-white">
-        {['Featured', 'Collaborations', 'Practice'].map((category) => ( // Changed 'Other' to 'Practice'
+        {['Featured', 'Collaborations', 'Practice'].map((category) => ( 
           <li className="text-white transition-colors duration-300 hover:text-secondary" key={category}>
             <button
               className={category === selectedCategory ? 'text-secondary' : ''} // highlight selected category
