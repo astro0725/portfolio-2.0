@@ -14,7 +14,6 @@ export const getFilteredRepos = async (user) => {
       'portfolio-2.0',
       'student-portfolio-css',
       'astro0725',
-      'PixelPals',
       'prework-study-guide',
       'horiseon-refactor-challenge',
     ];
