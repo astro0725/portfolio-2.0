@@ -3,7 +3,7 @@ import { getFilteredRepos, getSpecificRepo } from '../../assets/Github/Repos'; /
 import { fetchReadme, transformImageUrl } from '../../assets/Github/Fetch'; // additional utilities from fetch.jsx
 
 const Projects = () => {
-  const [repos, setRepos] = useState({ featured: [], group: [], other: [] }); // state to hold categorized repos
+  const [repos, setRepos] = useState({ featured: [], collaborations: [], other: [] }); // renamed group to collaborations
   const [selectedCategory, setSelectedCategory] = useState('Featured'); // set the default category to 'Featured'
   const [filteredProjects, setFilteredProjects] = useState([]); // state to hold filtered repos for display
 
@@ -15,7 +15,7 @@ const Projects = () => {
       // fetch featured repos
       const myRepos = await getFilteredRepos('astro0725'); // fetch featured repositories using getFilteredRepos
 
-      // fetch group repos
+      // fetch group repos (now called collaborations)
       const groupReposPromises = Object.entries(groupRepoNames).map(async ([user, repos]) => {
         return getSpecificRepo(user, repos); // fetch only the specific repos for each user
       });
@@ -38,9 +38,9 @@ const Projects = () => {
         })
       );
 
-      // categorize repos into featured, group, and other
+      // categorize repos into featured, collaborations, and other
       let featuredRepos = [],
-        groupRepos = [],
+        collaborationsRepos = [], // changed groupRepos to collaborationsRepos
         otherRepos = [];
 
       reposWithImages.forEach((repo) => {
@@ -48,15 +48,15 @@ const Projects = () => {
         if (featuredRepoNames.includes(repoName)) {
           featuredRepos.push(repo); // push to featured if repo name is in featuredRepoNames
         } else if (Object.values(groupRepoNames).flat().includes(repoName)) {
-          groupRepos.push(repo); // push to group if repo name is in groupRepoNames
+          collaborationsRepos.push(repo); // push to collaborations if repo name is in groupRepoNames
         } else {
-          otherRepos.push(repo); // push to other if repo name is not in featured or group
+          otherRepos.push(repo); // push to other if repo name is not in featured or collaborations
         }
       });
 
       setRepos({
         featured: featuredRepos, // set categorized repos to state
-        group: groupRepos,
+        collaborations: collaborationsRepos, // renamed group to collaborations
         other: otherRepos,
       });
 
@@ -107,10 +107,10 @@ const Projects = () => {
       ...repos.featured.map((repo) => ({ ...repo, category: 'Featured' })), // map featured repos
       ...Object.entries(groupRepoNames).flatMap(([user, repoNames]) => {
         return repoNames.flatMap((repoName) => {
-          const foundRepo = repos.group.find(
-            (repo) => repo.name === repoName && repo.owner.login === user // find matching group repo
+          const foundRepo = repos.collaborations.find(
+            (repo) => repo.name === repoName && repo.owner.login === user // find matching collaborations repo
           );
-          return foundRepo ? { ...foundRepo, category: 'Group' } : []; // if found, assign to group
+          return foundRepo ? { ...foundRepo, category: 'Collaborations' } : []; // if found, assign to collaborations
         });
       }),
       ...repos.other.map((repo) => ({ ...repo, category: 'Other' })), // map other repos
@@ -127,7 +127,7 @@ const Projects = () => {
       </header>
 
       <ul className="flex justify-start items-center gap-6 pl-1 mb-5 text-white">
-        {['Featured', 'Group', 'Other'].map((category) => ( // Removed 'All' category
+        {['Featured', 'Collaborations', 'Other'].map((category) => ( // Changed 'Group' to 'Collaborations'
           <li className="text-white transition-colors duration-300 hover:text-secondary" key={category}>
             <button
               className={category === selectedCategory ? 'text-secondary' : ''} // highlight selected category
