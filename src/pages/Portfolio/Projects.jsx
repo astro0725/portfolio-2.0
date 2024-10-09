@@ -60,7 +60,7 @@ const Projects = () => {
         other: otherRepos,
       });
 
-      // Set the filtered projects to the "Featured" repos by default
+      // set the filtered projects to the "Featured" repos by default
       setFilteredProjects(featuredRepos);
     };
 
@@ -116,22 +116,18 @@ const Projects = () => {
       ...repos.other.map((repo) => ({ ...repo, category: 'Other' })), // map other repos
     ];
 
-    if (category === 'All') {
-      setFilteredProjects(allReposWithCategory); // show all repos if "all" is selected
-    } else {
-      const filtered = allReposWithCategory.filter((repo) => repo.category === category); // filter repos by selected category
-      setFilteredProjects(filtered); // set filtered projects
-    }
+    const filtered = allReposWithCategory.filter((repo) => repo.category === category); // filter repos by selected category
+    setFilteredProjects(filtered); // set filtered projects
   };
 
   return (
-    <section data-page="portfolio">
+    <div data-page="portfolio">
       <header>
         <h2 className="text-highlight text-xl font-bold">What I'm Working On</h2>
       </header>
 
       <ul className="flex justify-start items-center gap-6 pl-1 mb-5 text-white">
-        {['Featured', 'Group', 'Other', 'All'].map((category) => (
+        {['Featured', 'Group', 'Other'].map((category) => ( // Removed 'All' category
           <li className="text-white transition-colors duration-300 hover:text-secondary" key={category}>
             <button
               className={category === selectedCategory ? 'text-secondary' : ''} // highlight selected category
@@ -144,7 +140,7 @@ const Projects = () => {
         ))}
       </ul>
       {renderProjects(filteredProjects)} {/* display filtered projects */}
-    </section>
+    </div>
   );
 };
 
