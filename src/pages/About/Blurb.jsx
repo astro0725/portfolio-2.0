@@ -32,15 +32,15 @@ const About = () => {
 
       <section>
         <h3 className='text-highlight text-xl font-bold mb-2'>What I'm doing</h3>
-        <ul className='grid space-between grid-cols-2'>
-        {servicesData.map((service, index) => (
-          <Service
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-          />
-        ))}
+        <ul className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+          {servicesData.map((service, index) => (
+            <Service
+              key={index}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+            />
+          ))}
         </ul>
       </section>
 

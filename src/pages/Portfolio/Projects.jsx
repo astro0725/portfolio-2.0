@@ -71,7 +71,7 @@ const Projects = () => {
   const renderProjects = (projectsArray) => {
     return (
       <div>
-        <ul className="grid grid-cols-2 space-between justify-center">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 space-between justify-center">
           {projectsArray.map((repo) => (
             <li key={repo.id} className="relative p-2 m-5 bg-body rounded-lg shadow-sm z-1">
               <div className="relative">

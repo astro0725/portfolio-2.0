@@ -36,7 +36,7 @@ const Resume = () => {
           </div>
           <h3 className='text-white text-lg font-semibold'>Skills</h3>
         </div>
-        <ul className='grid space-between grid-cols-3'>
+        <ul className='grid space-between grid-cols-1 sm:grid-cols-3'>
         {skillsData.map((service, index) => (
           <SkillItem
             key={index}
