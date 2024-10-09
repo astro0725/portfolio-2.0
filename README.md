@@ -17,7 +17,7 @@ The goal of this portfolio is to provide an overview of my abilities, highlight 
    - [GitHub Repository](https://github.com/astro0725/gamifylife) 
 
 2. **Spawn Point 2.0**
-   - A collaborative pixel art drawing app built with Node.js, Express, and Socket.io.
+   - Social platform for gamers built with React and Firebase
    - [GitHub Repository](https://github.com/astro0725/spawn-point-2.0)
 
 ## Preview
