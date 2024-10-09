@@ -14,7 +14,7 @@ function GitHubRepos() {
         // fetch user repos from github using fetchGitHubRepos function
         const data = await fetchGitHubRepos('astro0725', [], token);
 
-        // filter out specific repos if needed
+        // filter out specific repos
         const excludedRepos = [
           'will-you',
           'portfolio-2.0',
