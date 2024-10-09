@@ -123,10 +123,10 @@ const Projects = () => {
   return (
     <div data-page="portfolio">
       <header>
-        <h2 className="text-highlight text-xl font-bold">What I'm Working On</h2>
+        <h2 className="text-highlight text-xl font-bold mb-3">What I'm Working On</h2>
       </header>
 
-      <ul className="flex justify-center items-center gap-6 pl-1 mb-5 text-white">
+      <ul className="flex justify-center items-center gap-6 pl-1 mb-2 text-white">
         {['Featured', 'Collaborations', 'Practice'].map((category) => ( 
           <li className="text-white transition-colors duration-300 hover:text-secondary" key={category}>
             <button
