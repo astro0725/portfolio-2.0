@@ -1,0 +1,31 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+body {
+  @apply bg-body;
+}
+
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #1b262c;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #9fb9d0;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9fb9d0;
+  }
+  .max-w-calc-100-minus-64 {
+    max-width: calc(100% - 64px);
+  }
+  .w-calc-100-minus-64 {
+    width: calc(100% - 64px);
+  }
+}
