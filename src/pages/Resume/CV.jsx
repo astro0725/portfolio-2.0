@@ -25,10 +25,6 @@ const skillsData = [
 const Resume = () => {
   return (
     <section>
-      <header>
-        <h2 className='mb-2 text-highlight text-2xl font-bold'>Resume</h2>
-      </header>
-
       <div>
         <div className='flex items-center gap-4 mb-6'>
           <div className='relative bg-tertiary text-white w-7 h-7 flex justify-center items-center text-sm shadow-sm rounded-lg'>

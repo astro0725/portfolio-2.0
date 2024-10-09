@@ -127,7 +127,7 @@ const Projects = () => {
   return (
     <section data-page="portfolio">
       <header>
-        <h2 className="text-highlight text-xl font-bold">Portfolio</h2>
+        <h2 className="text-highlight text-xl font-bold">What I'm Working On</h2>
       </header>
 
       <ul className="flex justify-start items-center gap-6 pl-1 mb-5 text-white">
