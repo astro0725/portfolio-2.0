@@ -1,32 +1,46 @@
 import './assets/css/tailwind.css'
 
+import React, { useEffect, useState } from 'react';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [repos, setRepos] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchGitHubRepos = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/astro0725/repos', {
+          headers: {
+            'Authorization': `token ${import.meta.env.VITE_GITHUB_PAT}`, // Use Vite's environment variable syntax
+            'Accept': 'application/vnd.github.v3+json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setRepos(data); // Set the fetched repos to state
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchGitHubRepos();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>GitHub Repos</h1>
+      {error && <p>{error}</p>}
+      <ul>
+        {repos.map(repo => (
+          <li key={repo.id}>{repo.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
