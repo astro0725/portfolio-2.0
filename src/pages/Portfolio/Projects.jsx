@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getFilteredRepos } from '../assets/Github/Repos'; // use the function from repos.jsx
-import { fetchReadme, transformImageUrl } from '../assets/Github/Fetch'; // additional utilities from fetch.jsx
+import { getFilteredRepos } from '../../assets/Github/Repos'; // use the function from repos.jsx
+import { fetchReadme, transformImageUrl } from '../../assets/Github/Fetch'; // additional utilities from fetch.jsx
 
 const Projects = () => {
   const [repos, setRepos] = useState({ personal: [], group: [], other: [] }); // state to hold categorized repos
