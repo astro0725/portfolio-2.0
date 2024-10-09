@@ -1,5 +1,6 @@
 // function to fetch repos from github
-export const fetchGitHubRepos = async (user, specificRepos = [], token) => {
+export const fetchGitHubRepos = async (user, specificRepos = []) => {
+  const token = import.meta.env.VITE_GITHUB_PAT;
   try {
     let url = `https://api.github.com/users/${user}/repos`;
     if (specificRepos.length > 0) {
@@ -23,10 +24,14 @@ export const fetchGitHubRepos = async (user, specificRepos = [], token) => {
 
 // function to fetch README content from a repository
 export const fetchReadme = async (fullName) => {
+  const token = import.meta.env.VITE_GITHUB_PAT;
   try {
     const [user, repoName] = fullName.split('/');
     const response = await fetch(`https://api.github.com/repos/${user}/${repoName}/readme`, {
-      headers: { 'Accept': 'application/vnd.github+json' },
+      headers: { 
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github+json' 
+      },
     });
     if (!response.ok) {
       console.error(`Failed to fetch README: ${response.statusText}`);
