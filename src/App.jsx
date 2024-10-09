@@ -22,7 +22,7 @@ function App() {
         const data = await response.json(); // parse response json data
 
         // filter out specific repos if needed (example for the 'astro0725' user)
-        const excludedRepos = ['will-you', 'portfolio', 'student-portfolio-css', 'astro0725', 'spawn-point', 'PixelPals', 'prework-study-guide', 'horiseon-refactor-challenge'];
+        const excludedRepos = ['will-you', 'portfolio-2.0', 'student-portfolio-css', 'astro0725', 'PixelPals', 'prework-study-guide', 'horiseon-refactor-challenge'];
         const filteredData = data.filter(repo => !excludedRepos.includes(repo.name));
 
         setRepos(filteredData); // set repositories to state
