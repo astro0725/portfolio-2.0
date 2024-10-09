@@ -11,13 +11,18 @@ The goal of this portfolio is to provide an overview of my abilities, highlight 
 - **Skills Section**: An overview of the technologies I specialize in.
 - **Interactive UI**: Smooth animations and intuitive navigation.
 
+## Technologies
+- Hosting: Firebase
+- Frontend: React, Vite, Tailwind CSS
+- APIs: Github
+
 ## Featured Projects
 1. **GamifyLife**
-   - A productivity web app built with React and Firebase to gamify task management.
+   - A productivity web app
    - [GitHub Repository](https://github.com/astro0725/gamifylife) 
 
 2. **Spawn Point 2.0**
-   - Social platform for gamers built with React and Firebase
+   - Social platform for gamers
    - [GitHub Repository](https://github.com/astro0725/spawn-point-2.0)
 
 ## Preview
