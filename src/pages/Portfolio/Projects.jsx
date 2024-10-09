@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFilteredRepos } from '../../assets/Github/Repos'; // use the function from repos.jsx
+import { getFilteredRepos, getSpecificRepo } from '../../assets/Github/Repos'; // use the function from repos.jsx
 import { fetchReadme, transformImageUrl } from '../../assets/Github/Fetch'; // additional utilities from fetch.jsx
 
 const Projects = () => {
@@ -16,12 +16,13 @@ const Projects = () => {
       const myRepos = await getFilteredRepos('astro0725'); // fetch personal repositories using getfilteredrepos
 
       // fetch group repos
+      // fetch group repos
       const groupReposPromises = Object.entries(groupRepoNames).map(async ([user, repos]) => {
-        return Promise.all(repos.map(repo => getFilteredRepos(user, [repo]))); // fetch group repos using getfilteredrepos for each user
+        return getSpecificRepo(user, repos); // fetch only the specific repos for each user
       });
-      const groupReposResults = (await Promise.all(groupReposPromises)).flat(2); // flatten the group repos array
-
-      const allFetchedRepos = [...myRepos, ...groupReposResults]; // combine personal and group repos
+      const groupReposResults = (await Promise.all(groupReposPromises)).flat(); // flatten the group repos array
+      // combine personal and group repos
+      const allFetchedRepos = [...myRepos, ...groupReposResults];
 
       // fetch readme content and transform image url for each repo
       const reposWithImages = await Promise.all(
