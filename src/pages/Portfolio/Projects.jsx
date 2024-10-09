@@ -3,25 +3,24 @@ import { getFilteredRepos, getSpecificRepo } from '../../assets/Github/Repos'; /
 import { fetchReadme, transformImageUrl } from '../../assets/Github/Fetch'; // additional utilities from fetch.jsx
 
 const Projects = () => {
-  const [repos, setRepos] = useState({ personal: [], group: [], other: [] }); // state to hold categorized repos
+  const [repos, setRepos] = useState({ featured: [], group: [], other: [] }); // state to hold categorized repos
   const [selectedCategory, setSelectedCategory] = useState('All'); // state to track selected filter category
   const [filteredProjects, setFilteredProjects] = useState([]); // state to hold filtered repos for display
 
-  const personalRepoNames = ['GamifyLife', 'spawn-point-2.0']; // predefined list of personal repos
+  const featuredRepoNames = ['GamifyLife', 'spawn-point-2.0']; // predefined list of featured repos
   const groupRepoNames = { 'stevendreed': ['3600'], 'SnapperGee': ['bookworm'] }; // predefined group repos by users
 
   useEffect(() => {
     const initializeRepos = async () => {
-      // fetch personal repos
-      const myRepos = await getFilteredRepos('astro0725'); // fetch personal repositories using getfilteredrepos
+      // fetch featured repos
+      const myRepos = await getFilteredRepos('astro0725'); // fetch featured repositories using getfilteredrepos
 
-      // fetch group repos
       // fetch group repos
       const groupReposPromises = Object.entries(groupRepoNames).map(async ([user, repos]) => {
         return getSpecificRepo(user, repos); // fetch only the specific repos for each user
       });
       const groupReposResults = (await Promise.all(groupReposPromises)).flat(); // flatten the group repos array
-      // combine personal and group repos
+      // combine featured and group repos
       const allFetchedRepos = [...myRepos, ...groupReposResults];
 
       // fetch readme content and transform image url for each repo
@@ -39,28 +38,28 @@ const Projects = () => {
         })
       );
 
-      // categorize repos into personal, group, and other
-      let personalRepos = [],
+      // categorize repos into featured, group, and other
+      let featuredRepos = [],
         groupRepos = [],
         otherRepos = [];
 
       reposWithImages.forEach((repo) => {
         const repoName = repo.name;
-        if (personalRepoNames.includes(repoName)) {
-          personalRepos.push(repo); // push to personal if repo name is in personalRepoNames
+        if (featuredRepoNames.includes(repoName)) {
+          featuredRepos.push(repo); // push to featured if repo name is in featuredRepoNames
         } else if (Object.values(groupRepoNames).flat().includes(repoName)) {
           groupRepos.push(repo); // push to group if repo name is in groupRepoNames
         } else {
-          otherRepos.push(repo); // push to other if repo name is not in personal or group
+          otherRepos.push(repo); // push to other if repo name is not in featured or group
         }
       });
 
       setRepos({
-        personal: personalRepos, // set categorized repos to state
+        featured: featuredRepos, // set categorized repos to state
         group: groupRepos,
         other: otherRepos,
       });
-      setFilteredProjects([...personalRepos, ...groupRepos, ...otherRepos]); // initially show all repos
+      setFilteredProjects([...featuredRepos, ...groupRepos, ...otherRepos]); // initially show all repos
     };
 
     initializeRepos(); // fetch and initialize repos on mount
@@ -103,7 +102,7 @@ const Projects = () => {
     setSelectedCategory(category); // update selected category
 
     const allReposWithCategory = [
-      ...repos.personal.map((repo) => ({ ...repo, category: 'Personal' })), // map personal repos
+      ...repos.featured.map((repo) => ({ ...repo, category: 'Featured' })), // map featured repos
       ...Object.entries(groupRepoNames).flatMap(([user, repoNames]) => {
         return repoNames.flatMap((repoName) => {
           const foundRepo = repos.group.find(
@@ -130,7 +129,7 @@ const Projects = () => {
       </header>
 
       <ul className="flex justify-start items-center gap-6 pl-1 mb-5 text-white">
-        {['Personal', 'Group', 'Other', 'All'].map((category) => (
+        {['Featured', 'Group', 'Other', 'All'].map((category) => (
           <li className="text-white transition-colors duration-300 hover:text-secondary" key={category}>
             <button
               className={category === selectedCategory ? 'text-secondary' : ''} // highlight selected category
