@@ -4,7 +4,7 @@ import { fetchReadme, transformImageUrl } from '../../assets/Github/Fetch'; // a
 
 const Projects = () => {
   const [repos, setRepos] = useState({ featured: [], group: [], other: [] }); // state to hold categorized repos
-  const [selectedCategory, setSelectedCategory] = useState('All'); // state to track selected filter category
+  const [selectedCategory, setSelectedCategory] = useState('Featured'); // set the default category to 'Featured'
   const [filteredProjects, setFilteredProjects] = useState([]); // state to hold filtered repos for display
 
   const featuredRepoNames = ['GamifyLife', 'spawn-point-2.0']; // predefined list of featured repos
@@ -13,7 +13,7 @@ const Projects = () => {
   useEffect(() => {
     const initializeRepos = async () => {
       // fetch featured repos
-      const myRepos = await getFilteredRepos('astro0725'); // fetch featured repositories using getfilteredrepos
+      const myRepos = await getFilteredRepos('astro0725'); // fetch featured repositories using getFilteredRepos
 
       // fetch group repos
       const groupReposPromises = Object.entries(groupRepoNames).map(async ([user, repos]) => {
@@ -59,7 +59,9 @@ const Projects = () => {
         group: groupRepos,
         other: otherRepos,
       });
-      setFilteredProjects([...featuredRepos, ...groupRepos, ...otherRepos]); // initially show all repos
+
+      // Set the filtered projects to the "Featured" repos by default
+      setFilteredProjects(featuredRepos);
     };
 
     initializeRepos(); // fetch and initialize repos on mount
