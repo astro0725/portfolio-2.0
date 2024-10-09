@@ -24,13 +24,13 @@ const Aside = () => {
       </div>
 
       <div className='my-4'>
-      <div className='h-px bg-body my-4'></div>
+        <div className='h-px bg-body my-4'></div>
         <ul>
           <li className='flex items-center gap-4 mb-4'>
             <IoMdSend className='text-xl text-primary' />
             <div>
               <p className='text-highlight text-xs uppercase'>Email</p>
-              <a href='mailto:angelica.strong0725@gmail.com' className='text-white'>
+              <a href='mailto:angelica.strong0725@gmail.com' target='_blank' rel='noopener noreferrer' className='text-white'>
                 angelica.strong0725@gmail.com
               </a>
             </div>
@@ -40,9 +40,9 @@ const Aside = () => {
             <FaGithub className='text-xl text-primary'/>
             <div>
               <p className='text-highlight text-xs uppercase'>Github</p>
-                <a href='https://github.com/astro0725' className='text-white'>
-                  astro0725
-                </a>
+              <a href='https://github.com/astro0725' target='_blank' rel='noopener noreferrer' className='text-white'>
+                astro0725
+              </a>
             </div>
           </li>
 
@@ -50,7 +50,7 @@ const Aside = () => {
             <FaLinkedinIn className='text-xl text-primary'/>
             <div>
               <p className='text-highlight text-xs uppercase'>Linkedin</p>
-              <a href='https://www.linkedin.com/in/angelica-strong/' className='text-white'>
+              <a href='https://www.linkedin.com/in/angelica-strong/' target='_blank' rel='noopener noreferrer' className='text-white'>
                 Angelica Strong
               </a>
             </div>
@@ -61,4 +61,4 @@ const Aside = () => {
   )
 }
 
-export default Aside
+export default Aside;
