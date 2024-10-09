@@ -28,3 +28,4 @@ package-lock.json
 .github
 
 src/assets/css/tailwind.css
+.firebase
